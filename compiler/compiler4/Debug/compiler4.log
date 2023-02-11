@@ -1,0 +1,33 @@
+﻿  ast.cpp
+C:\Users\Baher\source\repos\compiler4\compiler4\ast.cpp(1,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Baher\source\repos\compiler4\compiler4\ast.h(5,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Baher\source\repos\compiler4\compiler4\ast.h(6,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Baher\source\repos\compiler4\compiler4\ast.h(7,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Baher\source\repos\compiler4\compiler4\ast.cpp(7,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Baher\source\repos\compiler4\compiler4\ast.cpp(585,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Baher\source\repos\compiler4\compiler4\ast.cpp(594,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Baher\source\repos\compiler4\compiler4\ast.cpp(607,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Baher\source\repos\compiler4\compiler4\ast.cpp(671,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Baher\source\repos\compiler4\compiler4\ast.cpp(708,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Baher\source\repos\compiler4\compiler4\ast.cpp(730,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Baher\source\repos\compiler4\compiler4\ast.cpp(1305,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Baher\source\repos\compiler4\compiler4\ast.cpp(1309,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Baher\source\repos\compiler4\compiler4\ast.cpp(1323,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Baher\source\repos\compiler4\compiler4\ast.cpp(1327,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Baher\source\repos\compiler4\compiler4\ast.cpp(1341,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Baher\source\repos\compiler4\compiler4\ast.cpp(1345,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Baher\source\repos\compiler4\compiler4\ast.cpp(1393,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Baher\source\repos\compiler4\compiler4\ast.cpp(1487,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Baher\source\repos\compiler4\compiler4\ast.cpp(1549,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Baher\source\repos\compiler4\compiler4\ast.cpp(1560,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Baher\source\repos\compiler4\compiler4\ast.cpp(1615,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Baher\source\repos\compiler4\compiler4\ast.cpp(1645,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Baher\source\repos\compiler4\compiler4\ast.cpp(1664,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Baher\source\repos\compiler4\compiler4\ast.cpp(1994,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Baher\source\repos\compiler4\compiler4\ast.cpp(2038,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Baher\source\repos\compiler4\compiler4\ast.cpp(2049,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Baher\source\repos\compiler4\compiler4\ast.cpp(2053,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Baher\source\repos\compiler4\compiler4\ast.cpp(2148,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Baher\source\repos\compiler4\compiler4\ast.cpp(2171,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Baher\source\repos\compiler4\compiler4\ast.cpp(2185,20): warning C4018: '<': signed/unsigned mismatch
+  compiler4.vcxproj -> C:\Users\Baher\source\repos\compiler4\Debug\compiler4.exe

@@ -1,0 +1,28 @@
+program ali;
+var bbg : real;
+var b : real;
+var v : real;
+var cc : array[0,,2] of real;
+var t : integer;
+procedure f (x:real;y:real);
+var z:real;
+begin
+while x>=2.0 do
+x := x-1.0;
+z := x;
+if y<=5.0 then
+y := 4.3-1.1;
+
+bbg := bbg+z+y;
+cc[1] := bbg+1.0;
+if bbg < 18.5 then
+f(4.3, 3.0)
+end;
+
+
+begin
+cc[1] := 3.7;
+b:=3;
+f(b, 2.3)
+
+end

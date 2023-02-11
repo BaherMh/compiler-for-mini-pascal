@@ -1,0 +1,19 @@
+start
+alloc 3
+storeg 0
+pushg 0
+pushi 1
+pushi 2
+storen
+pushg 0
+load 1
+
+
+
+
+
+
+
+
+
+stop

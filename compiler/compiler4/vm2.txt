@@ -1,0 +1,104 @@
+start
+pushf 0.0
+storeg 0
+pushg 0
+pushf 0.0
+storeg 1
+pushg 1
+pushf 0.0
+storeg 2
+pushg 2
+alloc 3
+storeg 3
+pushg 3
+pushg 3
+pushi 0
+pushf 0.0
+storen
+pushg 3
+pushi 1
+pushf 0.0
+storen
+pushg 3
+pushi 2
+pushf 0.0
+storen
+pushi 0
+storeg 4
+pushg 4
+jump end_ffrealreal
+ffrealreal:
+pushl -2
+storel 0
+pushl 0
+pushl -1
+storel 1
+pushl 1
+pushf 0.0
+storel 3
+pushl 3
+pushl 0
+pushf 2.00
+fsupeq
+jz END_WHILE0
+START_WHILE0:
+pushl 0
+pushf 1.00
+fsub
+storel 0
+pushl 0
+pushl 0
+pushf 2.00
+fsupeq
+jz END_WHILE0
+jump START_WHILE0
+END_WHILE0:
+pushl 0
+storel 3
+pushl 3
+pushl 1
+pushf 5.00
+finfeq
+jz END_IF0
+pushf 4.30
+pushf 1.10
+fsub
+storel 1
+pushl 1
+END_IF0:
+pushg 0
+pushl 3
+fadd
+pushl 1
+fadd
+storeg 0
+pushg 0
+pushg 3
+pushi 1
+pushg 0
+pushf 1.00
+fadd
+storen
+pushg 0
+pushf 18.50
+finf
+jz END_IF1
+pushf 4.30
+pushf 3.00
+pusha ffrealreal
+call
+END_IF1:
+return
+end_ffrealreal:
+pushg 3
+pushi 1
+pushf 3.70
+storen
+pushf 3.00
+storeg 1
+pushg 1
+pushg 1
+pushf 2.30
+pusha ffrealreal
+call
+stop

@@ -1,0 +1,1562 @@
+Terminals which are not used
+
+   DIGIT
+
+
+Grammar
+
+    0 $accept: root $end
+
+    1 @1: /* empty */
+
+    2 root: PROGRAM IDENT ';' declarations @1 subprogram_declarations compound_statement
+
+    3 identifier_list: IDENT
+    4                | identifier_list ',' IDENT
+
+    5 declarations: declarations VAR identifier_list ':' type ';'
+    6             | /* empty */
+
+    7 type: standard_type
+    8     | ARRAY '[' INTNUM ',' ',' INTNUM ']' OF standard_type
+
+    9 standard_type: INTEGER
+   10              | REAL
+   11              | BOOLEAN
+   12              | STRINGNUM
+
+   13 subprogram_declarations: subprogram_declarations subprogram_declaration ';'
+   14                        | /* empty */
+
+   15 @2: /* empty */
+
+   16 subprogram_declaration: subprogram_head_function local_declarations @2 compound_statement RETURN expression
+
+   17 @3: /* empty */
+
+   18 subprogram_declaration: subprogram_head_procedure local_declarations @3 compound_statement
+
+   19 local_declarations: local_declarations VAR identifier_list ':' type ';'
+   20                   | /* empty */
+
+   21 @4: /* empty */
+
+   22 subprogram_head_function: FUNCTION IDENT @4 arguments ':' standard_type ';'
+
+   23 @5: /* empty */
+
+   24 subprogram_head_procedure: PROCEDURE IDENT @5 arguments ';'
+
+   25 arguments: '(' parameter_list ')'
+   26          | /* empty */
+
+   27 parameter_list: identifier_list ':' type
+   28               | parameter_list ';' identifier_list ':' type
+
+   29 @6: /* empty */
+
+   30 compound_statement: BEG optional_statements END @6
+
+   31 optional_statements: statement_list
+   32                    | /* empty */
+
+   33 statement_list: statement
+   34               | statement_list ';' statement
+
+   35 statement: variable ASSIGNMENT expression
+   36          | procedure_statement
+   37          | compound_statement
+   38          | IF expression THEN statement
+   39          | IF expression THEN statement ELSE statement
+   40          | WHILE expression DO statement
+
+   41 variable: IDENT
+   42         | IDENT '[' expression_list ']'
+
+   43 procedure_statement: IDENT
+   44                    | IDENT '(' expression_list ')'
+
+   45 expression_list: expression
+   46                | expression_list ',' expression
+
+   47 expression: IDENT
+   48           | INTNUM
+   49           | REALNUM
+   50           | TRUE
+   51           | FALSE
+   52           | IDENT '(' expression_list ')'
+   53           | '(' expression ')'
+   54           | expression unary_operator expression
+   55           | NOT expression
+
+   56 unary_operator: '+'
+   57               | '-'
+   58               | '*'
+   59               | '/'
+   60               | DIV
+   61               | GE
+   62               | LE
+   63               | GREATER
+   64               | LESS
+   65               | EQ
+   66               | NE
+   67               | NOT
+   68               | OR
+   69               | AND
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+'(' (40) 25 44 52 53
+')' (41) 25 44 52 53
+'*' (42) 58
+'+' (43) 56
+',' (44) 4 8 46
+'-' (45) 57
+'/' (47) 59
+':' (58) 5 19 22 27 28
+';' (59) 2 5 13 19 22 24 28 34
+'[' (91) 8 42
+']' (93) 8 42
+error (256)
+BOOLEAN (258) 11
+REAL (259) 10
+INTEGER (260) 9
+VAR (261) 5 19
+ARRAY (262) 8
+DIGIT (263)
+INTNUM (264) 8 48
+REALNUM (265) 49
+STRINGNUM (266) 12
+IDENT (267) 2 3 4 22 24 41 42 43 44 47 52
+IF (268) 38 39
+ELSE (269) 39
+THEN (270) 38 39
+WHILE (271) 40
+DO (272) 40
+OF (273) 8
+RETURN (274) 16
+TRUE (275) 50
+FALSE (276) 51
+AND (277) 69
+OR (278) 68
+NOT (279) 55 67
+DIV (280) 60
+PROGRAM (281) 2
+FUNCTION (282) 22
+PROCEDURE (283) 24
+BEG (284) 30
+END (285) 30
+ASSIGNMENT (286) 35
+LE (287) 62
+LESS (288) 64
+GE (289) 61
+GREATER (290) 63
+EQ (291) 65
+NE (292) 66
+"ifelse" (293)
+"then" (294)
+"unary" (295)
+
+
+Nonterminals, with rules where they appear
+
+$accept (52)
+    on left: 0
+root (53)
+    on left: 2, on right: 0
+@1 (54)
+    on left: 1, on right: 2
+identifier_list (55)
+    on left: 3 4, on right: 4 5 19 27 28
+declarations (56)
+    on left: 5 6, on right: 2 5
+type (57)
+    on left: 7 8, on right: 5 19 27 28
+standard_type (58)
+    on left: 9 10 11 12, on right: 7 8 22
+subprogram_declarations (59)
+    on left: 13 14, on right: 2 13
+subprogram_declaration (60)
+    on left: 16 18, on right: 13
+@2 (61)
+    on left: 15, on right: 16
+@3 (62)
+    on left: 17, on right: 18
+local_declarations (63)
+    on left: 19 20, on right: 16 18 19
+subprogram_head_function (64)
+    on left: 22, on right: 16
+@4 (65)
+    on left: 21, on right: 22
+subprogram_head_procedure (66)
+    on left: 24, on right: 18
+@5 (67)
+    on left: 23, on right: 24
+arguments (68)
+    on left: 25 26, on right: 22 24
+parameter_list (69)
+    on left: 27 28, on right: 25 28
+compound_statement (70)
+    on left: 30, on right: 2 16 18 37
+@6 (71)
+    on left: 29, on right: 30
+optional_statements (72)
+    on left: 31 32, on right: 30
+statement_list (73)
+    on left: 33 34, on right: 31 34
+statement (74)
+    on left: 35 36 37 38 39 40, on right: 33 34 38 39 40
+variable (75)
+    on left: 41 42, on right: 35
+procedure_statement (76)
+    on left: 43 44, on right: 36
+expression_list (77)
+    on left: 45 46, on right: 42 44 46 52
+expression (78)
+    on left: 47 48 49 50 51 52 53 54 55, on right: 16 35 38 39 40 45
+    46 53 54 55
+unary_operator (79)
+    on left: 56 57 58 59 60 61 62 63 64 65 66 67 68 69,
+    on right: 54
+
+
+state 0
+
+    0 $accept: . root $end
+
+    PROGRAM  shift, and go to state 1
+
+    root  go to state 2
+
+
+state 1
+
+    2 root: PROGRAM . IDENT ';' declarations @1 subprogram_declarations compound_statement
+
+    IDENT  shift, and go to state 3
+
+
+state 2
+
+    0 $accept: root . $end
+
+    $end  shift, and go to state 4
+
+
+state 3
+
+    2 root: PROGRAM IDENT . ';' declarations @1 subprogram_declarations compound_statement
+
+    ';'  shift, and go to state 5
+
+
+state 4
+
+    0 $accept: root $end .
+
+    $default  accept
+
+
+state 5
+
+    2 root: PROGRAM IDENT ';' . declarations @1 subprogram_declarations compound_statement
+
+    $default  reduce using rule 6 (declarations)
+
+    declarations  go to state 6
+
+
+state 6
+
+    2 root: PROGRAM IDENT ';' declarations . @1 subprogram_declarations compound_statement
+    5 declarations: declarations . VAR identifier_list ':' type ';'
+
+    VAR  shift, and go to state 7
+
+    $default  reduce using rule 1 (@1)
+
+    @1  go to state 8
+
+
+state 7
+
+    5 declarations: declarations VAR . identifier_list ':' type ';'
+
+    IDENT  shift, and go to state 9
+
+    identifier_list  go to state 10
+
+
+state 8
+
+    2 root: PROGRAM IDENT ';' declarations @1 . subprogram_declarations compound_statement
+
+    $default  reduce using rule 14 (subprogram_declarations)
+
+    subprogram_declarations  go to state 11
+
+
+state 9
+
+    3 identifier_list: IDENT .
+
+    $default  reduce using rule 3 (identifier_list)
+
+
+state 10
+
+    4 identifier_list: identifier_list . ',' IDENT
+    5 declarations: declarations VAR identifier_list . ':' type ';'
+
+    ','  shift, and go to state 12
+    ':'  shift, and go to state 13
+
+
+state 11
+
+    2 root: PROGRAM IDENT ';' declarations @1 subprogram_declarations . compound_statement
+   13 subprogram_declarations: subprogram_declarations . subprogram_declaration ';'
+
+    FUNCTION   shift, and go to state 14
+    PROCEDURE  shift, and go to state 15
+    BEG        shift, and go to state 16
+
+    subprogram_declaration     go to state 17
+    subprogram_head_function   go to state 18
+    subprogram_head_procedure  go to state 19
+    compound_statement         go to state 20
+
+
+state 12
+
+    4 identifier_list: identifier_list ',' . IDENT
+
+    IDENT  shift, and go to state 21
+
+
+state 13
+
+    5 declarations: declarations VAR identifier_list ':' . type ';'
+
+    BOOLEAN    shift, and go to state 22
+    REAL       shift, and go to state 23
+    INTEGER    shift, and go to state 24
+    ARRAY      shift, and go to state 25
+    STRINGNUM  shift, and go to state 26
+
+    type           go to state 27
+    standard_type  go to state 28
+
+
+state 14
+
+   22 subprogram_head_function: FUNCTION . IDENT @4 arguments ':' standard_type ';'
+
+    IDENT  shift, and go to state 29
+
+
+state 15
+
+   24 subprogram_head_procedure: PROCEDURE . IDENT @5 arguments ';'
+
+    IDENT  shift, and go to state 30
+
+
+state 16
+
+   30 compound_statement: BEG . optional_statements END @6
+
+    IDENT  shift, and go to state 31
+    IF     shift, and go to state 32
+    WHILE  shift, and go to state 33
+    BEG    shift, and go to state 16
+
+    $default  reduce using rule 32 (optional_statements)
+
+    compound_statement   go to state 34
+    optional_statements  go to state 35
+    statement_list       go to state 36
+    statement            go to state 37
+    variable             go to state 38
+    procedure_statement  go to state 39
+
+
+state 17
+
+   13 subprogram_declarations: subprogram_declarations subprogram_declaration . ';'
+
+    ';'  shift, and go to state 40
+
+
+state 18
+
+   16 subprogram_declaration: subprogram_head_function . local_declarations @2 compound_statement RETURN expression
+
+    $default  reduce using rule 20 (local_declarations)
+
+    local_declarations  go to state 41
+
+
+state 19
+
+   18 subprogram_declaration: subprogram_head_procedure . local_declarations @3 compound_statement
+
+    $default  reduce using rule 20 (local_declarations)
+
+    local_declarations  go to state 42
+
+
+state 20
+
+    2 root: PROGRAM IDENT ';' declarations @1 subprogram_declarations compound_statement .
+
+    $default  reduce using rule 2 (root)
+
+
+state 21
+
+    4 identifier_list: identifier_list ',' IDENT .
+
+    $default  reduce using rule 4 (identifier_list)
+
+
+state 22
+
+   11 standard_type: BOOLEAN .
+
+    $default  reduce using rule 11 (standard_type)
+
+
+state 23
+
+   10 standard_type: REAL .
+
+    $default  reduce using rule 10 (standard_type)
+
+
+state 24
+
+    9 standard_type: INTEGER .
+
+    $default  reduce using rule 9 (standard_type)
+
+
+state 25
+
+    8 type: ARRAY . '[' INTNUM ',' ',' INTNUM ']' OF standard_type
+
+    '['  shift, and go to state 43
+
+
+state 26
+
+   12 standard_type: STRINGNUM .
+
+    $default  reduce using rule 12 (standard_type)
+
+
+state 27
+
+    5 declarations: declarations VAR identifier_list ':' type . ';'
+
+    ';'  shift, and go to state 44
+
+
+state 28
+
+    7 type: standard_type .
+
+    $default  reduce using rule 7 (type)
+
+
+state 29
+
+   22 subprogram_head_function: FUNCTION IDENT . @4 arguments ':' standard_type ';'
+
+    $default  reduce using rule 21 (@4)
+
+    @4  go to state 45
+
+
+state 30
+
+   24 subprogram_head_procedure: PROCEDURE IDENT . @5 arguments ';'
+
+    $default  reduce using rule 23 (@5)
+
+    @5  go to state 46
+
+
+state 31
+
+   41 variable: IDENT .
+   42         | IDENT . '[' expression_list ']'
+   43 procedure_statement: IDENT .
+   44                    | IDENT . '(' expression_list ')'
+
+    '['  shift, and go to state 47
+    '('  shift, and go to state 48
+
+    ASSIGNMENT  reduce using rule 41 (variable)
+    $default    reduce using rule 43 (procedure_statement)
+
+
+state 32
+
+   38 statement: IF . expression THEN statement
+   39          | IF . expression THEN statement ELSE statement
+
+    INTNUM   shift, and go to state 49
+    REALNUM  shift, and go to state 50
+    IDENT    shift, and go to state 51
+    TRUE     shift, and go to state 52
+    FALSE    shift, and go to state 53
+    NOT      shift, and go to state 54
+    '('      shift, and go to state 55
+
+    expression  go to state 56
+
+
+state 33
+
+   40 statement: WHILE . expression DO statement
+
+    INTNUM   shift, and go to state 49
+    REALNUM  shift, and go to state 50
+    IDENT    shift, and go to state 51
+    TRUE     shift, and go to state 52
+    FALSE    shift, and go to state 53
+    NOT      shift, and go to state 54
+    '('      shift, and go to state 55
+
+    expression  go to state 57
+
+
+state 34
+
+   37 statement: compound_statement .
+
+    $default  reduce using rule 37 (statement)
+
+
+state 35
+
+   30 compound_statement: BEG optional_statements . END @6
+
+    END  shift, and go to state 58
+
+
+state 36
+
+   31 optional_statements: statement_list .
+   34 statement_list: statement_list . ';' statement
+
+    ';'  shift, and go to state 59
+
+    $default  reduce using rule 31 (optional_statements)
+
+
+state 37
+
+   33 statement_list: statement .
+
+    $default  reduce using rule 33 (statement_list)
+
+
+state 38
+
+   35 statement: variable . ASSIGNMENT expression
+
+    ASSIGNMENT  shift, and go to state 60
+
+
+state 39
+
+   36 statement: procedure_statement .
+
+    $default  reduce using rule 36 (statement)
+
+
+state 40
+
+   13 subprogram_declarations: subprogram_declarations subprogram_declaration ';' .
+
+    $default  reduce using rule 13 (subprogram_declarations)
+
+
+state 41
+
+   16 subprogram_declaration: subprogram_head_function local_declarations . @2 compound_statement RETURN expression
+   19 local_declarations: local_declarations . VAR identifier_list ':' type ';'
+
+    VAR  shift, and go to state 61
+
+    $default  reduce using rule 15 (@2)
+
+    @2  go to state 62
+
+
+state 42
+
+   18 subprogram_declaration: subprogram_head_procedure local_declarations . @3 compound_statement
+   19 local_declarations: local_declarations . VAR identifier_list ':' type ';'
+
+    VAR  shift, and go to state 61
+
+    $default  reduce using rule 17 (@3)
+
+    @3  go to state 63
+
+
+state 43
+
+    8 type: ARRAY '[' . INTNUM ',' ',' INTNUM ']' OF standard_type
+
+    INTNUM  shift, and go to state 64
+
+
+state 44
+
+    5 declarations: declarations VAR identifier_list ':' type ';' .
+
+    $default  reduce using rule 5 (declarations)
+
+
+state 45
+
+   22 subprogram_head_function: FUNCTION IDENT @4 . arguments ':' standard_type ';'
+
+    '('  shift, and go to state 65
+
+    $default  reduce using rule 26 (arguments)
+
+    arguments  go to state 66
+
+
+state 46
+
+   24 subprogram_head_procedure: PROCEDURE IDENT @5 . arguments ';'
+
+    '('  shift, and go to state 65
+
+    $default  reduce using rule 26 (arguments)
+
+    arguments  go to state 67
+
+
+state 47
+
+   42 variable: IDENT '[' . expression_list ']'
+
+    INTNUM   shift, and go to state 49
+    REALNUM  shift, and go to state 50
+    IDENT    shift, and go to state 51
+    TRUE     shift, and go to state 52
+    FALSE    shift, and go to state 53
+    NOT      shift, and go to state 54
+    '('      shift, and go to state 55
+
+    expression_list  go to state 68
+    expression       go to state 69
+
+
+state 48
+
+   44 procedure_statement: IDENT '(' . expression_list ')'
+
+    INTNUM   shift, and go to state 49
+    REALNUM  shift, and go to state 50
+    IDENT    shift, and go to state 51
+    TRUE     shift, and go to state 52
+    FALSE    shift, and go to state 53
+    NOT      shift, and go to state 54
+    '('      shift, and go to state 55
+
+    expression_list  go to state 70
+    expression       go to state 69
+
+
+state 49
+
+   48 expression: INTNUM .
+
+    $default  reduce using rule 48 (expression)
+
+
+state 50
+
+   49 expression: REALNUM .
+
+    $default  reduce using rule 49 (expression)
+
+
+state 51
+
+   47 expression: IDENT .
+   52           | IDENT . '(' expression_list ')'
+
+    '('  shift, and go to state 71
+
+    $default  reduce using rule 47 (expression)
+
+
+state 52
+
+   50 expression: TRUE .
+
+    $default  reduce using rule 50 (expression)
+
+
+state 53
+
+   51 expression: FALSE .
+
+    $default  reduce using rule 51 (expression)
+
+
+state 54
+
+   55 expression: NOT . expression
+
+    INTNUM   shift, and go to state 49
+    REALNUM  shift, and go to state 50
+    IDENT    shift, and go to state 51
+    TRUE     shift, and go to state 52
+    FALSE    shift, and go to state 53
+    NOT      shift, and go to state 54
+    '('      shift, and go to state 55
+
+    expression  go to state 72
+
+
+state 55
+
+   53 expression: '(' . expression ')'
+
+    INTNUM   shift, and go to state 49
+    REALNUM  shift, and go to state 50
+    IDENT    shift, and go to state 51
+    TRUE     shift, and go to state 52
+    FALSE    shift, and go to state 53
+    NOT      shift, and go to state 54
+    '('      shift, and go to state 55
+
+    expression  go to state 73
+
+
+state 56
+
+   38 statement: IF expression . THEN statement
+   39          | IF expression . THEN statement ELSE statement
+   54 expression: expression . unary_operator expression
+
+    THEN     shift, and go to state 74
+    AND      shift, and go to state 75
+    OR       shift, and go to state 76
+    NOT      shift, and go to state 77
+    DIV      shift, and go to state 78
+    LE       shift, and go to state 79
+    LESS     shift, and go to state 80
+    GE       shift, and go to state 81
+    GREATER  shift, and go to state 82
+    EQ       shift, and go to state 83
+    NE       shift, and go to state 84
+    '+'      shift, and go to state 85
+    '-'      shift, and go to state 86
+    '*'      shift, and go to state 87
+    '/'      shift, and go to state 88
+
+    unary_operator  go to state 89
+
+
+state 57
+
+   40 statement: WHILE expression . DO statement
+   54 expression: expression . unary_operator expression
+
+    DO       shift, and go to state 90
+    AND      shift, and go to state 75
+    OR       shift, and go to state 76
+    NOT      shift, and go to state 77
+    DIV      shift, and go to state 78
+    LE       shift, and go to state 79
+    LESS     shift, and go to state 80
+    GE       shift, and go to state 81
+    GREATER  shift, and go to state 82
+    EQ       shift, and go to state 83
+    NE       shift, and go to state 84
+    '+'      shift, and go to state 85
+    '-'      shift, and go to state 86
+    '*'      shift, and go to state 87
+    '/'      shift, and go to state 88
+
+    unary_operator  go to state 89
+
+
+state 58
+
+   30 compound_statement: BEG optional_statements END . @6
+
+    $default  reduce using rule 29 (@6)
+
+    @6  go to state 91
+
+
+state 59
+
+   34 statement_list: statement_list ';' . statement
+
+    IDENT  shift, and go to state 31
+    IF     shift, and go to state 32
+    WHILE  shift, and go to state 33
+    BEG    shift, and go to state 16
+
+    compound_statement   go to state 34
+    statement            go to state 92
+    variable             go to state 38
+    procedure_statement  go to state 39
+
+
+state 60
+
+   35 statement: variable ASSIGNMENT . expression
+
+    INTNUM   shift, and go to state 49
+    REALNUM  shift, and go to state 50
+    IDENT    shift, and go to state 51
+    TRUE     shift, and go to state 52
+    FALSE    shift, and go to state 53
+    NOT      shift, and go to state 54
+    '('      shift, and go to state 55
+
+    expression  go to state 93
+
+
+state 61
+
+   19 local_declarations: local_declarations VAR . identifier_list ':' type ';'
+
+    IDENT  shift, and go to state 9
+
+    identifier_list  go to state 94
+
+
+state 62
+
+   16 subprogram_declaration: subprogram_head_function local_declarations @2 . compound_statement RETURN expression
+
+    BEG  shift, and go to state 16
+
+    compound_statement  go to state 95
+
+
+state 63
+
+   18 subprogram_declaration: subprogram_head_procedure local_declarations @3 . compound_statement
+
+    BEG  shift, and go to state 16
+
+    compound_statement  go to state 96
+
+
+state 64
+
+    8 type: ARRAY '[' INTNUM . ',' ',' INTNUM ']' OF standard_type
+
+    ','  shift, and go to state 97
+
+
+state 65
+
+   25 arguments: '(' . parameter_list ')'
+
+    IDENT  shift, and go to state 9
+
+    identifier_list  go to state 98
+    parameter_list   go to state 99
+
+
+state 66
+
+   22 subprogram_head_function: FUNCTION IDENT @4 arguments . ':' standard_type ';'
+
+    ':'  shift, and go to state 100
+
+
+state 67
+
+   24 subprogram_head_procedure: PROCEDURE IDENT @5 arguments . ';'
+
+    ';'  shift, and go to state 101
+
+
+state 68
+
+   42 variable: IDENT '[' expression_list . ']'
+   46 expression_list: expression_list . ',' expression
+
+    ','  shift, and go to state 102
+    ']'  shift, and go to state 103
+
+
+state 69
+
+   45 expression_list: expression .
+   54 expression: expression . unary_operator expression
+
+    AND      shift, and go to state 75
+    OR       shift, and go to state 76
+    NOT      shift, and go to state 77
+    DIV      shift, and go to state 78
+    LE       shift, and go to state 79
+    LESS     shift, and go to state 80
+    GE       shift, and go to state 81
+    GREATER  shift, and go to state 82
+    EQ       shift, and go to state 83
+    NE       shift, and go to state 84
+    '+'      shift, and go to state 85
+    '-'      shift, and go to state 86
+    '*'      shift, and go to state 87
+    '/'      shift, and go to state 88
+
+    $default  reduce using rule 45 (expression_list)
+
+    unary_operator  go to state 89
+
+
+state 70
+
+   44 procedure_statement: IDENT '(' expression_list . ')'
+   46 expression_list: expression_list . ',' expression
+
+    ','  shift, and go to state 102
+    ')'  shift, and go to state 104
+
+
+state 71
+
+   52 expression: IDENT '(' . expression_list ')'
+
+    INTNUM   shift, and go to state 49
+    REALNUM  shift, and go to state 50
+    IDENT    shift, and go to state 51
+    TRUE     shift, and go to state 52
+    FALSE    shift, and go to state 53
+    NOT      shift, and go to state 54
+    '('      shift, and go to state 55
+
+    expression_list  go to state 105
+    expression       go to state 69
+
+
+state 72
+
+   54 expression: expression . unary_operator expression
+   55           | NOT expression .
+
+    DIV      shift, and go to state 78
+    LE       shift, and go to state 79
+    LESS     shift, and go to state 80
+    GE       shift, and go to state 81
+    GREATER  shift, and go to state 82
+    EQ       shift, and go to state 83
+    NE       shift, and go to state 84
+    '+'      shift, and go to state 85
+    '-'      shift, and go to state 86
+    '*'      shift, and go to state 87
+    '/'      shift, and go to state 88
+
+    $default  reduce using rule 55 (expression)
+
+    unary_operator  go to state 89
+
+
+state 73
+
+   53 expression: '(' expression . ')'
+   54           | expression . unary_operator expression
+
+    AND      shift, and go to state 75
+    OR       shift, and go to state 76
+    NOT      shift, and go to state 77
+    DIV      shift, and go to state 78
+    LE       shift, and go to state 79
+    LESS     shift, and go to state 80
+    GE       shift, and go to state 81
+    GREATER  shift, and go to state 82
+    EQ       shift, and go to state 83
+    NE       shift, and go to state 84
+    '+'      shift, and go to state 85
+    '-'      shift, and go to state 86
+    '*'      shift, and go to state 87
+    '/'      shift, and go to state 88
+    ')'      shift, and go to state 106
+
+    unary_operator  go to state 89
+
+
+state 74
+
+   38 statement: IF expression THEN . statement
+   39          | IF expression THEN . statement ELSE statement
+
+    IDENT  shift, and go to state 31
+    IF     shift, and go to state 32
+    WHILE  shift, and go to state 33
+    BEG    shift, and go to state 16
+
+    compound_statement   go to state 34
+    statement            go to state 107
+    variable             go to state 38
+    procedure_statement  go to state 39
+
+
+state 75
+
+   69 unary_operator: AND .
+
+    $default  reduce using rule 69 (unary_operator)
+
+
+state 76
+
+   68 unary_operator: OR .
+
+    $default  reduce using rule 68 (unary_operator)
+
+
+state 77
+
+   67 unary_operator: NOT .
+
+    $default  reduce using rule 67 (unary_operator)
+
+
+state 78
+
+   60 unary_operator: DIV .
+
+    $default  reduce using rule 60 (unary_operator)
+
+
+state 79
+
+   62 unary_operator: LE .
+
+    $default  reduce using rule 62 (unary_operator)
+
+
+state 80
+
+   64 unary_operator: LESS .
+
+    $default  reduce using rule 64 (unary_operator)
+
+
+state 81
+
+   61 unary_operator: GE .
+
+    $default  reduce using rule 61 (unary_operator)
+
+
+state 82
+
+   63 unary_operator: GREATER .
+
+    $default  reduce using rule 63 (unary_operator)
+
+
+state 83
+
+   65 unary_operator: EQ .
+
+    $default  reduce using rule 65 (unary_operator)
+
+
+state 84
+
+   66 unary_operator: NE .
+
+    $default  reduce using rule 66 (unary_operator)
+
+
+state 85
+
+   56 unary_operator: '+' .
+
+    $default  reduce using rule 56 (unary_operator)
+
+
+state 86
+
+   57 unary_operator: '-' .
+
+    $default  reduce using rule 57 (unary_operator)
+
+
+state 87
+
+   58 unary_operator: '*' .
+
+    $default  reduce using rule 58 (unary_operator)
+
+
+state 88
+
+   59 unary_operator: '/' .
+
+    $default  reduce using rule 59 (unary_operator)
+
+
+state 89
+
+   54 expression: expression unary_operator . expression
+
+    INTNUM   shift, and go to state 49
+    REALNUM  shift, and go to state 50
+    IDENT    shift, and go to state 51
+    TRUE     shift, and go to state 52
+    FALSE    shift, and go to state 53
+    NOT      shift, and go to state 54
+    '('      shift, and go to state 55
+
+    expression  go to state 108
+
+
+state 90
+
+   40 statement: WHILE expression DO . statement
+
+    IDENT  shift, and go to state 31
+    IF     shift, and go to state 32
+    WHILE  shift, and go to state 33
+    BEG    shift, and go to state 16
+
+    compound_statement   go to state 34
+    statement            go to state 109
+    variable             go to state 38
+    procedure_statement  go to state 39
+
+
+state 91
+
+   30 compound_statement: BEG optional_statements END @6 .
+
+    $default  reduce using rule 30 (compound_statement)
+
+
+state 92
+
+   34 statement_list: statement_list ';' statement .
+
+    $default  reduce using rule 34 (statement_list)
+
+
+state 93
+
+   35 statement: variable ASSIGNMENT expression .
+   54 expression: expression . unary_operator expression
+
+    AND      shift, and go to state 75
+    OR       shift, and go to state 76
+    NOT      shift, and go to state 77
+    DIV      shift, and go to state 78
+    LE       shift, and go to state 79
+    LESS     shift, and go to state 80
+    GE       shift, and go to state 81
+    GREATER  shift, and go to state 82
+    EQ       shift, and go to state 83
+    NE       shift, and go to state 84
+    '+'      shift, and go to state 85
+    '-'      shift, and go to state 86
+    '*'      shift, and go to state 87
+    '/'      shift, and go to state 88
+
+    $default  reduce using rule 35 (statement)
+
+    unary_operator  go to state 89
+
+
+state 94
+
+    4 identifier_list: identifier_list . ',' IDENT
+   19 local_declarations: local_declarations VAR identifier_list . ':' type ';'
+
+    ','  shift, and go to state 12
+    ':'  shift, and go to state 110
+
+
+state 95
+
+   16 subprogram_declaration: subprogram_head_function local_declarations @2 compound_statement . RETURN expression
+
+    RETURN  shift, and go to state 111
+
+
+state 96
+
+   18 subprogram_declaration: subprogram_head_procedure local_declarations @3 compound_statement .
+
+    $default  reduce using rule 18 (subprogram_declaration)
+
+
+state 97
+
+    8 type: ARRAY '[' INTNUM ',' . ',' INTNUM ']' OF standard_type
+
+    ','  shift, and go to state 112
+
+
+state 98
+
+    4 identifier_list: identifier_list . ',' IDENT
+   27 parameter_list: identifier_list . ':' type
+
+    ','  shift, and go to state 12
+    ':'  shift, and go to state 113
+
+
+state 99
+
+   25 arguments: '(' parameter_list . ')'
+   28 parameter_list: parameter_list . ';' identifier_list ':' type
+
+    ';'  shift, and go to state 114
+    ')'  shift, and go to state 115
+
+
+state 100
+
+   22 subprogram_head_function: FUNCTION IDENT @4 arguments ':' . standard_type ';'
+
+    BOOLEAN    shift, and go to state 22
+    REAL       shift, and go to state 23
+    INTEGER    shift, and go to state 24
+    STRINGNUM  shift, and go to state 26
+
+    standard_type  go to state 116
+
+
+state 101
+
+   24 subprogram_head_procedure: PROCEDURE IDENT @5 arguments ';' .
+
+    $default  reduce using rule 24 (subprogram_head_procedure)
+
+
+state 102
+
+   46 expression_list: expression_list ',' . expression
+
+    INTNUM   shift, and go to state 49
+    REALNUM  shift, and go to state 50
+    IDENT    shift, and go to state 51
+    TRUE     shift, and go to state 52
+    FALSE    shift, and go to state 53
+    NOT      shift, and go to state 54
+    '('      shift, and go to state 55
+
+    expression  go to state 117
+
+
+state 103
+
+   42 variable: IDENT '[' expression_list ']' .
+
+    $default  reduce using rule 42 (variable)
+
+
+state 104
+
+   44 procedure_statement: IDENT '(' expression_list ')' .
+
+    $default  reduce using rule 44 (procedure_statement)
+
+
+state 105
+
+   46 expression_list: expression_list . ',' expression
+   52 expression: IDENT '(' expression_list . ')'
+
+    ','  shift, and go to state 102
+    ')'  shift, and go to state 118
+
+
+state 106
+
+   53 expression: '(' expression ')' .
+
+    $default  reduce using rule 53 (expression)
+
+
+state 107
+
+   38 statement: IF expression THEN statement .
+   39          | IF expression THEN statement . ELSE statement
+
+    ELSE  shift, and go to state 119
+
+    $default  reduce using rule 38 (statement)
+
+
+state 108
+
+   54 expression: expression . unary_operator expression
+   54           | expression unary_operator expression .
+
+    $default  reduce using rule 54 (expression)
+
+    unary_operator  go to state 89
+
+
+state 109
+
+   40 statement: WHILE expression DO statement .
+
+    $default  reduce using rule 40 (statement)
+
+
+state 110
+
+   19 local_declarations: local_declarations VAR identifier_list ':' . type ';'
+
+    BOOLEAN    shift, and go to state 22
+    REAL       shift, and go to state 23
+    INTEGER    shift, and go to state 24
+    ARRAY      shift, and go to state 25
+    STRINGNUM  shift, and go to state 26
+
+    type           go to state 120
+    standard_type  go to state 28
+
+
+state 111
+
+   16 subprogram_declaration: subprogram_head_function local_declarations @2 compound_statement RETURN . expression
+
+    INTNUM   shift, and go to state 49
+    REALNUM  shift, and go to state 50
+    IDENT    shift, and go to state 51
+    TRUE     shift, and go to state 52
+    FALSE    shift, and go to state 53
+    NOT      shift, and go to state 54
+    '('      shift, and go to state 55
+
+    expression  go to state 121
+
+
+state 112
+
+    8 type: ARRAY '[' INTNUM ',' ',' . INTNUM ']' OF standard_type
+
+    INTNUM  shift, and go to state 122
+
+
+state 113
+
+   27 parameter_list: identifier_list ':' . type
+
+    BOOLEAN    shift, and go to state 22
+    REAL       shift, and go to state 23
+    INTEGER    shift, and go to state 24
+    ARRAY      shift, and go to state 25
+    STRINGNUM  shift, and go to state 26
+
+    type           go to state 123
+    standard_type  go to state 28
+
+
+state 114
+
+   28 parameter_list: parameter_list ';' . identifier_list ':' type
+
+    IDENT  shift, and go to state 9
+
+    identifier_list  go to state 124
+
+
+state 115
+
+   25 arguments: '(' parameter_list ')' .
+
+    $default  reduce using rule 25 (arguments)
+
+
+state 116
+
+   22 subprogram_head_function: FUNCTION IDENT @4 arguments ':' standard_type . ';'
+
+    ';'  shift, and go to state 125
+
+
+state 117
+
+   46 expression_list: expression_list ',' expression .
+   54 expression: expression . unary_operator expression
+
+    AND      shift, and go to state 75
+    OR       shift, and go to state 76
+    NOT      shift, and go to state 77
+    DIV      shift, and go to state 78
+    LE       shift, and go to state 79
+    LESS     shift, and go to state 80
+    GE       shift, and go to state 81
+    GREATER  shift, and go to state 82
+    EQ       shift, and go to state 83
+    NE       shift, and go to state 84
+    '+'      shift, and go to state 85
+    '-'      shift, and go to state 86
+    '*'      shift, and go to state 87
+    '/'      shift, and go to state 88
+
+    $default  reduce using rule 46 (expression_list)
+
+    unary_operator  go to state 89
+
+
+state 118
+
+   52 expression: IDENT '(' expression_list ')' .
+
+    $default  reduce using rule 52 (expression)
+
+
+state 119
+
+   39 statement: IF expression THEN statement ELSE . statement
+
+    IDENT  shift, and go to state 31
+    IF     shift, and go to state 32
+    WHILE  shift, and go to state 33
+    BEG    shift, and go to state 16
+
+    compound_statement   go to state 34
+    statement            go to state 126
+    variable             go to state 38
+    procedure_statement  go to state 39
+
+
+state 120
+
+   19 local_declarations: local_declarations VAR identifier_list ':' type . ';'
+
+    ';'  shift, and go to state 127
+
+
+state 121
+
+   16 subprogram_declaration: subprogram_head_function local_declarations @2 compound_statement RETURN expression .
+   54 expression: expression . unary_operator expression
+
+    AND      shift, and go to state 75
+    OR       shift, and go to state 76
+    NOT      shift, and go to state 77
+    DIV      shift, and go to state 78
+    LE       shift, and go to state 79
+    LESS     shift, and go to state 80
+    GE       shift, and go to state 81
+    GREATER  shift, and go to state 82
+    EQ       shift, and go to state 83
+    NE       shift, and go to state 84
+    '+'      shift, and go to state 85
+    '-'      shift, and go to state 86
+    '*'      shift, and go to state 87
+    '/'      shift, and go to state 88
+
+    $default  reduce using rule 16 (subprogram_declaration)
+
+    unary_operator  go to state 89
+
+
+state 122
+
+    8 type: ARRAY '[' INTNUM ',' ',' INTNUM . ']' OF standard_type
+
+    ']'  shift, and go to state 128
+
+
+state 123
+
+   27 parameter_list: identifier_list ':' type .
+
+    $default  reduce using rule 27 (parameter_list)
+
+
+state 124
+
+    4 identifier_list: identifier_list . ',' IDENT
+   28 parameter_list: parameter_list ';' identifier_list . ':' type
+
+    ','  shift, and go to state 12
+    ':'  shift, and go to state 129
+
+
+state 125
+
+   22 subprogram_head_function: FUNCTION IDENT @4 arguments ':' standard_type ';' .
+
+    $default  reduce using rule 22 (subprogram_head_function)
+
+
+state 126
+
+   39 statement: IF expression THEN statement ELSE statement .
+
+    $default  reduce using rule 39 (statement)
+
+
+state 127
+
+   19 local_declarations: local_declarations VAR identifier_list ':' type ';' .
+
+    $default  reduce using rule 19 (local_declarations)
+
+
+state 128
+
+    8 type: ARRAY '[' INTNUM ',' ',' INTNUM ']' . OF standard_type
+
+    OF  shift, and go to state 130
+
+
+state 129
+
+   28 parameter_list: parameter_list ';' identifier_list ':' . type
+
+    BOOLEAN    shift, and go to state 22
+    REAL       shift, and go to state 23
+    INTEGER    shift, and go to state 24
+    ARRAY      shift, and go to state 25
+    STRINGNUM  shift, and go to state 26
+
+    type           go to state 131
+    standard_type  go to state 28
+
+
+state 130
+
+    8 type: ARRAY '[' INTNUM ',' ',' INTNUM ']' OF . standard_type
+
+    BOOLEAN    shift, and go to state 22
+    REAL       shift, and go to state 23
+    INTEGER    shift, and go to state 24
+    STRINGNUM  shift, and go to state 26
+
+    standard_type  go to state 132
+
+
+state 131
+
+   28 parameter_list: parameter_list ';' identifier_list ':' type .
+
+    $default  reduce using rule 28 (parameter_list)
+
+
+state 132
+
+    8 type: ARRAY '[' INTNUM ',' ',' INTNUM ']' OF standard_type .
+
+    $default  reduce using rule 8 (type)
